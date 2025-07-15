@@ -1,34 +1,128 @@
-<!DOCTYPE html>
-<html lang="en">
+ <!DOCTYPE html>
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de QR Code</title>
-    <!-- Fonte Roboto -->
-     <link rel="preconnect" href="https://fonts.googleapis.com" />
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-     <link 
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@@,100;0,300;0;400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet" 
-      />
-      <!-- Estilos -->
-       <link rel="stylesheet" href="css/styles.css" />
-       <!-- Scripts -->
-        <script src="js/scripts.js" defer></script>
+  <meta charset="UTF-8">
+  <title>Quem traiu Bia?</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+      margin-top: 20px;
+      font-size: 2em;
+    }
+
+    #bia-img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      margin: 20px 0;
+    }
+
+    .btn {
+      background: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .btn:hover {
+      background: #78db27;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin: 10px 0;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    #dica, #resultado {
+      font-weight: bold;
+      color: #444;
+    }
+
+  </style>
 </head>
+
 <body>
- <div class="container">
-    <header id="qr-header">
-        <h1>Gerador de QR code</h1>
-        <p>Insira uma URL ou texto, para criar um QR code
-        </p>
-    </header>
-     <div id="qr-form">
-        <input type="text" placeholder="Digite a URL ou text..." />
-     <button>Gerar QR code</button>
-    </div>
-    <div id="qr-code">
-        <img src="img/download.png" />
-    </div>
-</body> 
+
+  <h1>Quem traiu Bia?</h1>
+
+  <!-- AQUI COLOCAMOS SUA IMAGEM -->
+  <img id="bia-img" src="images.jpeg" alt="Bia">
+
+  <div class="card"> <!-- Investigar Suspeitos -->
+    <h2>Investigue os suspeitos:</h2>
+    <button class="btn" onclick="investigar('João')">João</button>
+    <button class="btn" onclick="investigar('Lucas')">Lucas</button>
+    <button class="btn" onclick="investigar('Pedro')">Pedro</button>
+    <button class="btn" onclick="investigar('Matheus')">Matheus</button>
+  </div>
+
+  <div class="card">
+    <div id="dica">Dicas aparecerão aqui...</div>
+  </div>
+
+  <div class="card">
+    <h2>Faça sua acusação:</h2>
+    <button class="btn" onclick="acusar('João')">João</button>
+    <button class="btn" onclick="acusar('Lucas')">Lucas</button>
+    <button class="btn" onclick="acusar('Pedro')">Pedro</button>
+    <button class="btn" onclick="acusar('Matheus')">Matheus</button>
+    <button class="btn" onclick="investigar('Matheus')">Matheus</button>
+    <button class="btn" onclick="acusar('Matheus')">Matheus</button>
+  
+  </div>
+
+  <div class="card">
+    <div id="resultado">Resultado aparecerá aqui...</div>
+  </div>
+
+  <script>
+    
+    const dicas = {
+      'João': "João estava fora da cidade no dia do ocorrido.",
+      'Lucas': "Lucas foi visto com Bia em uma festa, mas disse que são apenas amigos.",
+      'Pedro': "Pedro sempre gostou da Bia, mas nunca teve coragem de se declarar.",
+      'Maria': "Maria é a melhor amiga da Bia, mas há rumores de traição."
+    };
+
+    const culpado = 'Matheus';
+
+    function investigar(nome) {
+      document.getElementById('dica').innerText = "Dica sobre " + nome + ": " + dicas[nome];
+    }
+
+    function acusar(nome) {
+      if (nome === culpado) {
+        document.getElementById('resultado').innerText = "Parabéns! Você descobriu que " + nome + " traiu Bia!";
+      } else {
+        document.getElementById('resultado').innerText = "Errado! " + nome + " não traiu Bia.";
+      }
+    }
+  </script>
+
+</body>
 </html>
